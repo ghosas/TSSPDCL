@@ -17,7 +17,7 @@ header = soup.find_all('td',attrs={'bgcolor': '#083557'})
 for item in header:
     record = item.find('b')
     pos = header.index(item)
-    rec= str(record).replace("<b>","").replace("</b>","")
+    rec= record.get_text()
     head[rec]=pos
 # print(head)
 
@@ -34,7 +34,7 @@ for element in table :
     cols = element.find_all('td')
     li = []
     for data in cols:
-        d = str(data).replace('<td><font color="#000000" face="Verdana" size="1">','').replace("<b>","").replace("</b>","").replace("</td>","").replace("</font>","").replace('<td align="center" style="font-weight:normal;"><font color="#000000" face="Verdana" size="1">','')
+        d = data.get_text()
         li.append(d)
     # print(li)
     df.loc[len(df)] = li
